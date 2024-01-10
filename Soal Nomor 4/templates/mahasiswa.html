@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%; /* Added to ensure it takes full width */
+        }
+    </style>
+</head>
+<body>
+    <h3 style="text-align: center;">Silahkan Login untuk isi KRS</h3>
+    <form id="loginForm">
+        <label for="nim">NIM:</label>
+        <input type="text" id="nim" name="nim" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function login() {
+            var nim = document.getElementById("nim").value;
+            var password = document.getElementById("password").value;
+
+            // Make fetch request to the Flask server
+            fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: "nim=" + encodeURIComponent(nim) + "&password=" + encodeURIComponent(password),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerHTML = data.result;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    </script>
+
+</body>
+</html>

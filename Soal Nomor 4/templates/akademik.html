@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademik List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>List Mahasiswa Belum Bayar Semester</h2>
+
+    <table id="akademikTable">
+        <thead>
+            <tr>
+                <th>NIM</th>
+                <th>Nama</th>
+            </tr>
+        </thead>
+        <tbody id="akademikTableBody">
+            {% for item in akademikList %}
+                <tr>
+                    <td>{{ item['nim'] }}</td>
+                    <td>{{ item['nama'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
