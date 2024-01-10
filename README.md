@@ -1,0 +1,2 @@
+# UAS_WSSOA_21104045
+Tugas UAS WSSOA_Rizky Ageng Nugroho_21104045
